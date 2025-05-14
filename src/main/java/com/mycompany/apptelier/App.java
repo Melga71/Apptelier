@@ -26,61 +26,100 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import javafx.scene.control.TableColumn;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableView;
+import java.sql.*;
+
 public class App extends Application {
+    
+    private Font f = new Font(20);
+   
     
     public void start(Stage stage) {
         Label message = new Label("Bienvenue dans l'Apptelier !");
-        message.setFont(new Font(10));
+        message.setFont(new Font(30));
         
-        Button equip = new Button("Gérer des équipements");
-        equip.setOnAction(evt -> {message.setText("ouvrir une nouvelle fenêtre");
-                                        
-                                       });
-        //helloButton.setOnAction(new EventHandler<ActionEvent>() {
-        //    @Override
-        //    public void handle(ActionEvent t) {
-        //        message.setText("Bonjour !");
-        //        System.out.println("Bonjour !");
-        //    }
-        //});
+        Button gEquip = new Button("Gérer les équipements");
+        gEquip.setOnAction(evt -> {fenetreEquipement();}); 
 
-        Button gamme = new Button("Gérer les opérations");
-        gamme.setOnAction(evt -> {message.setText("nouvelle fenêtre");});
+        Button gGammes = new Button("Gérer les gammes");
+        gGammes.setOnAction(evt -> {fenetreGamme();}); 
         
-        Button operateur = new Button("Gérer les opérateurs");
-        operateur.setOnAction(evt -> {message.setText("nouvelle fenêtre");});
+        Button gOperateurs = new Button("Gérer les opérateurs");
+        gOperateurs.setOnAction(evt -> {
+          }); //A MODIF
         
         Button atelier = new Button("Afficher l'atelier");
-        atelier.setOnAction(evt -> {message.setText("nouvelle fenêtre");});
+        atelier.setOnAction(evt -> {message.setText("nouvelle fenêtre");});//A MODIF
         
-        Button produit = new Button("Gérer les produits");
-        produit.setOnAction(evt -> {message.setText("nouvelle fenêtre");});
+        Button gProduit = new Button("Gérer les produits");
+        gProduit.setOnAction(evt -> {message.setText("nouvelle fenêtre");});//A MODIF
         
-        VBox buttonBar = new VBox(10, message, equip, gamme, operateur, atelier);
+        gEquip.setFont(f);
+        gGammes.setFont(f);
+        gOperateurs.setFont(f);
+        atelier.setFont(f);
+        gProduit.setFont(f);
+        
+        VBox buttonBar = new VBox(10, message, gEquip, gGammes, gOperateurs, gProduit, atelier);
         buttonBar.setAlignment(Pos.CENTER);
         
-        BorderPane root = new BorderPane();
         
-       root.setCenter(buttonBar);
         
-        //StackPane root = new StackPane();
-        //root.getChildren().addAll(message,buttonBar);
-
-        //FlowPane root = new FlowPane();
-        //root.getChildren().addAll(message,buttonBar);
-
-        //HBox root = new HBox();
-        //root.getChildren().addAll(message,buttonBar);
-
-        //VBox root = new VBox();
-        //root.getChildren().addAll(message,buttonBar);
-
-        Scene scene = new Scene(root, 450, 300);
+        Scene scene = new Scene(buttonBar, 450, 400);
         stage.setScene(scene);
         stage.setTitle("Gestion de l'atelier");
         stage.show();
     }
 
+    public void fenetreEquipement(){
+    Stage equipement = new Stage();
+    equipement.setTitle("Gestion des équipements");
+
+    Button machine = new Button("Machines");
+        machine.setOnAction(e -> {System.out.println("nouvelle fenêtre");});//A MODIF
+    Button poste = new Button("Postes");
+        poste.setOnAction(e -> {System.out.println("nouvelle fenêtre");}); //A MODIF
+
+    machine.setFont(f); poste.setFont(f);
+    
+        
+    VBox box = new VBox(10, machine, poste);
+    box.setAlignment(Pos.CENTER);
+    
+    
+    Scene scene = new Scene(box, 310, 150);
+        equipement.setX(800);equipement.setY(250);
+        equipement.setScene(scene);
+        equipement.show();
+    }
+    
+    public void fenetreGamme(){
+    Stage Gamme = new Stage();
+    Gamme.setTitle("Gestion des gammes");
+
+    Button operation = new Button("Opérations");
+        operation.setOnAction(e -> {System.out.println("nouvelle fenêtre");});//A MODIF
+    Button gamme = new Button("Gammes");
+        gamme.setOnAction(e -> {System.out.println("nouvelle fenêtre");}); //A MODIF
+
+    operation.setFont(f); gamme.setFont(f);
+    
+        
+    VBox box = new VBox(10, operation, gamme);
+    box.setAlignment(Pos.CENTER);
+    
+    
+    Scene scene = new Scene(box, 310, 150);
+        Gamme.setX(170);Gamme.setY(250);
+        Gamme.setScene(scene);
+        Gamme.show();
+    }
+    
+   
+    
     public static void main(String[] args) {
         launch(args); 
     }
