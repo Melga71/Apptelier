@@ -31,6 +31,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
 import java.sql.*;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
 
 public class App extends Application {
     
@@ -40,6 +42,7 @@ public class App extends Application {
     public void start(Stage stage) {
         Label message = new Label("Bienvenue dans l'Apptelier !");
         message.setFont(new Font(30));
+        
         
         Button gMachine = new Button("Machines");
         gMachine.setOnAction(evt -> {fenetreEquipement();}); 
@@ -57,10 +60,13 @@ public class App extends Application {
         gOperateur.setOnAction(evt -> {
           }); //A MODIF
         
+        Region espaceVide = new Region();
+        espaceVide.setPrefHeight(50);
+        
         Button atelier = new Button("Afficher l'atelier");
         atelier.setOnAction(evt -> {message.setText("nouvelle fenêtre");});//A MODIF
         
-        Button gProduit = new Button("Gérer les produits");
+        Button gProduit = new Button("Produits");
         gProduit.setOnAction(evt -> {message.setText("nouvelle fenêtre");});//A MODIF
         
         gMachine.setFont(f);
@@ -70,15 +76,21 @@ public class App extends Application {
         gOperateur.setFont(f);
         atelier.setFont(f);
         gProduit.setFont(f);
+      
         
-        HBox equipement = new HBox(10, gMachine, gPoste);
-        HBox opGam = new HBox(10, gOperation, gGamme);
+        GridPane layout = new GridPane();
+        layout.add(message, 0, 0, 2, 1);
+        layout.add(gMachine, 0, 1);
+        layout.add(gPoste, 1, 1);
+        layout.add(gOperation, 0, 2);
+        layout.add(gGamme, 1, 2);
+        layout.add(gOperateur, 0, 3);
+        layout.add(gProduit, 1, 3);
+        layout.add(espaceVide, 0, 4, 2, 1);
+        layout.add(atelier, 0, 5, 2, 1);
+        layout.setAlignment(Pos.CENTER);
         
-        VBox buttonBar = new VBox(10, equipement, opGam, gOperateur, gProduit, atelier);
-        buttonBar.setAlignment(Pos.CENTER);
-        
-        
-        Scene scene = new Scene(buttonBar, 450, 400);
+        Scene scene = new Scene(layout, 450, 400);
         stage.setScene(scene);
         stage.setTitle("Gestion de l'atelier");
         stage.show();
