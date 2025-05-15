@@ -41,14 +41,20 @@ public class App extends Application {
         Label message = new Label("Bienvenue dans l'Apptelier !");
         message.setFont(new Font(30));
         
-        Button gEquip = new Button("Gérer les équipements");
-        gEquip.setOnAction(evt -> {fenetreEquipement();}); 
-
-        Button gGammes = new Button("Gérer les gammes");
-        gGammes.setOnAction(evt -> {fenetreGamme();}); 
+        Button gMachine = new Button("Machines");
+        gMachine.setOnAction(evt -> {fenetreEquipement();}); 
         
-        Button gOperateurs = new Button("Gérer les opérateurs");
-        gOperateurs.setOnAction(evt -> {
+        Button gPoste = new Button("Postes");
+        gMachine.setOnAction(evt -> {fenetreEquipement();}); 
+
+        Button gGamme = new Button("Gammes");
+        gGamme.setOnAction(evt -> {fenetreGamme();}); 
+        
+        Button gOperation = new Button("Opérations");
+        gGamme.setOnAction(evt -> {fenetreGamme();}); 
+        
+        Button gOperateur = new Button("Opérateurs");
+        gOperateur.setOnAction(evt -> {
           }); //A MODIF
         
         Button atelier = new Button("Afficher l'atelier");
@@ -57,15 +63,19 @@ public class App extends Application {
         Button gProduit = new Button("Gérer les produits");
         gProduit.setOnAction(evt -> {message.setText("nouvelle fenêtre");});//A MODIF
         
-        gEquip.setFont(f);
-        gGammes.setFont(f);
-        gOperateurs.setFont(f);
+        gMachine.setFont(f);
+        gPoste.setFont(f);
+        gGamme.setFont(f);
+        gOperation.setFont(f);
+        gOperateur.setFont(f);
         atelier.setFont(f);
         gProduit.setFont(f);
         
-        VBox buttonBar = new VBox(10, message, gEquip, gGammes, gOperateurs, gProduit, atelier);
-        buttonBar.setAlignment(Pos.CENTER);
+        HBox equipement = new HBox(10, gMachine, gPoste);
+        HBox opGam = new HBox(10, gOperation, gGamme);
         
+        VBox buttonBar = new VBox(10, equipement, opGam, gOperateur, gProduit, atelier);
+        buttonBar.setAlignment(Pos.CENTER);
         
         
         Scene scene = new Scene(buttonBar, 450, 400);
@@ -85,7 +95,7 @@ public class App extends Application {
 
     machine.setFont(f); poste.setFont(f);
     
-        
+    
     VBox box = new VBox(10, machine, poste);
     box.setAlignment(Pos.CENTER);
     
