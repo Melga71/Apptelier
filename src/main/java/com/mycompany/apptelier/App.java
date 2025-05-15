@@ -31,6 +31,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
 import java.sql.*;
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
+import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 
@@ -40,21 +43,21 @@ public class App extends Application {
    
     
     public void start(Stage stage) {
-        Label message = new Label("Bienvenue dans l'Apptelier !");
+        Label message = new Label("Gérer l'Apptelier");
         message.setFont(new Font(30));
         
         
         Button gMachine = new Button("Machines");
-        gMachine.setOnAction(evt -> {fenetreEquipement();}); 
+        gMachine.setOnAction(evt -> {}); 
         
         Button gPoste = new Button("Postes");
-        gMachine.setOnAction(evt -> {fenetreEquipement();}); 
+        gMachine.setOnAction(evt -> {}); 
 
         Button gGamme = new Button("Gammes");
-        gGamme.setOnAction(evt -> {fenetreGamme();}); 
+        gGamme.setOnAction(evt -> {}); 
         
         Button gOperation = new Button("Opérations");
-        gGamme.setOnAction(evt -> {fenetreGamme();}); 
+        gGamme.setOnAction(evt -> {}); 
         
         Button gOperateur = new Button("Opérateurs");
         gOperateur.setOnAction(evt -> {
@@ -80,7 +83,9 @@ public class App extends Application {
         
         GridPane layout = new GridPane();
         layout.add(message, 0, 0, 2, 1);
+        GridPane.setHalignment(message, HPos.CENTER);
         layout.add(gMachine, 0, 1);
+        GridPane.setHalignment(gMachine, HPos.RIGHT);
         layout.add(gPoste, 1, 1);
         layout.add(gOperation, 0, 2);
         layout.add(gGamme, 1, 2);
@@ -88,7 +93,11 @@ public class App extends Application {
         layout.add(gProduit, 1, 3);
         layout.add(espaceVide, 0, 4, 2, 1);
         layout.add(atelier, 0, 5, 2, 1);
+        GridPane.setHalignment(atelier, HPos.CENTER);
         layout.setAlignment(Pos.CENTER);
+        layout.setHgap(10); layout.setVgap(10);
+        
+
         
         Scene scene = new Scene(layout, 450, 400);
         stage.setScene(scene);
@@ -96,7 +105,7 @@ public class App extends Application {
         stage.show();
     }
 
-    public void fenetreEquipement(){
+    public void fenetreEquipement(){ //A ENLEVER
     Stage equipement = new Stage();
     equipement.setTitle("Gestion des équipements");
 
@@ -118,7 +127,7 @@ public class App extends Application {
         equipement.show();
     }
     
-    public void fenetreGamme(){
+    public void fenetreGamme(){ //A ENLEVER
     Stage Gamme = new Stage();
     Gamme.setTitle("Gestion des gammes");
 
